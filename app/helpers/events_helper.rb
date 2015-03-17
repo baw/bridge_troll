@@ -97,6 +97,6 @@ module EventsHelper
   end
 
   def attend_button_text(event)
-    event.at_limit? ? 'Join the waitlist' : 'Attend as a student'
+    event.at_student_limit? ? 'Join the waitlist' : 'Attend as a student'
   end
 end

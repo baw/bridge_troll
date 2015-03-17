@@ -27,7 +27,7 @@
     <% if event.allow_student_rsvp %>
       <div>
         <i class='fa fa-user'></i>Students: <%= event.student_rsvps_count %> / <%= event.student_rsvp_limit %>
-        <% if event.at_limit? %>
+        <% if event.at_student_limit? %>
           (<%= event.student_waitlist_rsvps_count %> Waitlisted)
         <% end %>
       </div>

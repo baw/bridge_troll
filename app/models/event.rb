@@ -70,7 +70,7 @@ class Event < ActiveRecord::Base
     "http://#{meetup_group_url}/events/#{meetup_event_id}/"
   end
 
-  def at_limit?
+  def at_student_limit?
     if student_rsvp_limit
       student_rsvps_count >= student_rsvp_limit
     end
@@ -241,7 +241,7 @@ class Event < ActiveRecord::Base
     return unless student_rsvp_limit
 
     Rsvp.transaction do
-      unless at_limit?
+      unless at_student_limit?
         number_of_open_spots = student_rsvp_limit - student_rsvps_count
         to_be_confirmed = student_waitlist_rsvps.limit(number_of_open_spots)
         to_be_confirmed.each do |rsvp|

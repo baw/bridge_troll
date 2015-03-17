@@ -239,22 +239,22 @@ describe Event do
     end
   end
 
-  describe "#at_limit?" do
-    context "when the event has a limit" do
+  describe "#at_student_limit?" do
+    context "when the event has a student limit" do
       let(:event) { create(:event, student_rsvp_limit: 2) }
 
       it 'is true when the limit is exceeded' do
         expect {
           3.times { create(:student_rsvp, event: event) }
-        }.to change { event.reload.at_limit? }.from(false).to(true)
+        }.to change { event.reload.at_student_limit? }.from(false).to(true)
       end
     end
 
-    context "when the event has no limit (historical events)" do
+    context "when the event has no student limit (historical events)" do
       let(:event) { create(:event, student_rsvp_limit: nil, meetup_student_event_id: 901, meetup_volunteer_event_id: 902) }
 
       it 'is false' do
-        event.should_not be_at_limit
+        event.should_not be_at_student_limit
       end
     end
   end

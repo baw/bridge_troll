@@ -131,7 +131,7 @@ describe "the individual event page" do
 
       context "when the event is full" do
         before(:each) do
-          Event.any_instance.stub(:at_limit?).and_return(true)
+          Event.any_instance.stub(:at_student_limit?).and_return(true)
         end
 
         it "should allow the user to join the waitlist" do

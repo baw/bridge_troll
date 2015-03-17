@@ -27,7 +27,7 @@ class RsvpsController < ApplicationController
     end
 
     Rsvp.transaction do
-      if @event.at_limit? && @rsvp.role_student?
+      if @event.at_student_limit? && @rsvp.role_student?
         @rsvp.waitlist_position = (@event.rsvps.maximum(:waitlist_position) || 0) + 1
       end
       set_dietary_restrictions(@rsvp, params[:dietary_restrictions])
